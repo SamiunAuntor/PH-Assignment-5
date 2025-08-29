@@ -109,9 +109,9 @@
                         <button class="h-6 w-6"><a href=""><img src="./assets/heart-2.png" alt=""></a></button>
                     </div>
                     <div>
-                        <h2 class="font-bold text-2xl mt-4">Fire Service </br> Number</h2>
+                        <h2 class="font-bold text-2xl mt-4">Fire Service Number</h2>
                         <p class="mt-0.5 text-[12px] text-[#5C5C5C]">Fire</p>
-                        <h1 class="mt-6 font-bold text-[24px] text-[#111111]">999</h1>
+                        <h1 class="mt-[56px] font-bold text-[24px] text-[#111111]">999</h1>
                         <p
                             class="mt-0.5 bg-[#F2F2F2] h-[37px] w-[53px] text-[#5C5C5C] text-center items-center leading-[37px] rounded-[9999px] text-[12px]">
                             Fire</p>
@@ -136,9 +136,9 @@
                         <button class="h-6 w-6"><a href=""><img src="./assets/heart-2.png" alt=""></a></button>
                     </div>
                     <div>
-                        <h2 class="font-bold text-2xl mt-4">Ambulance </br> Service</h2>
+                        <h2 class="font-bold text-2xl mt-4">Ambulance Service</h2>
                         <p class="mt-0.5 text-[12px] text-[#5C5C5C]">Health</p>
-                        <h1 class="mt-6 font-bold text-[24px] text-[#111111]">1994-999999</h1>
+                        <h1 class="mt-[56px] font-bold text-[24px] text-[#111111]">1994-999999</h1>
                         <p
                             class="mt-0.5 bg-[#F2F2F2] h-[37px] w-[70px] text-[#5C5C5C] text-center items-center leading-[37px] rounded-[9999px] text-[12px]">
                             Health</p>
@@ -217,9 +217,9 @@
                         <button class="h-6 w-6"><a href=""><img src="./assets/heart-2.png" alt=""></a></button>
                     </div>
                     <div>
-                        <h2 class="font-bold text-2xl mt-4">Electricity </br> Helpline</h2>
+                        <h2 class="font-bold text-2xl mt-4">Electricity Helpline</h2>
                         <p class="mt-0.5 text-[12px] text-[#5C5C5C]">Electricity</p>
-                        <h1 class="mt-6 font-bold text-[24px] text-[#111111]">16216</h1>
+                        <h1 class="mt-[56px] font-bold text-[24px] text-[#111111]">16216</h1>
                         <p
                             class="mt-0.5 bg-[#F2F2F2] h-[37px] w-[90px] text-[#5C5C5C] text-center items-center leading-[37px] rounded-[9999px] text-[12px]">
                             Electricity</p>
@@ -243,9 +243,9 @@
                         <button class="h-6 w-6"><a href=""><img src="./assets/heart-2.png" alt=""></a></button>
                     </div>
                     <div>
-                        <h2 class="font-bold text-2xl mt-4">Brac <br> Helpline</h2>
+                        <h2 class="font-bold text-2xl mt-4">Brac Helpline</h2>
                         <p class="mt-0.5 text-[12px] text-[#5C5C5C]">NGO</p>
-                        <h1 class="mt-6 font-bold text-[24px] text-[#111111]">16445</h1>
+                        <h1 class="mt-[56px] font-bold text-[24px] text-[#111111]">16445</h1>
                         <p
                             class="mt-0.5 bg-[#F2F2F2] h-[37px] w-[60px] text-[#5C5C5C] text-center items-center leading-[37px] rounded-[9999px] text-[12px]">
                             NGO</p>
@@ -305,11 +305,14 @@
                         <!-- Right section -->
                         <div>
                             <button class="bg-[#00A63E] h-[40px] w-[80px] rounded-[50px] text-white font-medium">
-                                Clear
+                                <a href="">Clear</a>
                             </button>
                         </div>
                     </div>
+
+                    <div id="historyList" class="mt-4 space-y-3"></div>
                 </div>
+
 
 
                 <script>
@@ -325,18 +328,113 @@
                             ".women-and-child-helpline-card button img, " +
                             ".anti-corruption-helpline-card button img, " +
                             ".electricity-helpline-card button img, " +
-                            ".brac-helpline-card button img"
+                            ".brac-helpline-card button img, " +
+                            ".grid-cards button.h-6.w-6"
                         );
 
-                        for (var i = 0; i < heartButtons.length; i++) {
-                            heartButtons[i].addEventListener("click", function (event) {
+                        heartButtons.forEach(function (btn) {
+                            btn.addEventListener("click", function (event) {
                                 event.preventDefault();
-                                var count = parseInt(heartCount.textContent);
+                                var count = parseInt(heartCount.textContent) || 0;
                                 heartCount.textContent = count + 1;
+                            });
+                        });
+
+                        var coinEl = document.querySelector(".coin-card h3");
+                        var copyCountEl = document.querySelector(".copy-card h3");
+                        var historyCard = document.querySelector(".call-history-card");
+                        var historyList = document.getElementById("historyList");
+                        var clearBtn = historyCard.querySelector("button");
+
+                        var copyCount = parseInt(copyCountEl.textContent) || 0;
+                        function showCopyCount() {
+                            copyCountEl.textContent = copyCount + " Copy";
+                        }
+                        showCopyCount();
+
+                        function addToHistory(serviceName, serviceNumber) {
+                            var now = new Date();
+                            var timeText = now.toLocaleString();
+                            var item = document.createElement("div");
+                            item.className = "flex justify-between items-center bg-[#F7F7F7] p-3 rounded-md";
+                            item.innerHTML =
+                                '<div>' +
+                                '<p class="font-medium">' + serviceName + ' — ' + serviceNumber + '</p>' +
+                                '<p class="text-xs text-[#5C5C5C]">Time: ' + timeText + '</p>' +
+                                '</div>';
+                            if (historyList.firstChild) {
+                                historyList.insertBefore(item, historyList.firstChild);
+                            } else {
+                                historyList.appendChild(item);
+                            }
+                        }
+
+                        var allCards = document.querySelectorAll(".grid-cards > div");
+                        allCards.forEach(function (card) {
+                            if (card.classList.contains("call-history-card")) return;
+
+                            var nameEl = card.querySelector("h2");
+                            var numberEl = card.querySelector("h1");
+                            if (!nameEl || !numberEl) return;
+
+                            var btns = card.querySelectorAll("button");
+                            var copyBtn = null;
+                            var callBtn = null;
+
+                            btns.forEach(function (btn) {
+                                var txt = (btn.textContent || "").trim();
+                                if (txt.includes("Copy")) copyBtn = btn;
+                                if (txt.includes("Call")) callBtn = btn;
+                            });
+
+                            if (copyBtn) {
+                                copyBtn.addEventListener("click", function () {
+                                    var number = numberEl.textContent.trim();
+                                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                                        navigator.clipboard.writeText(number).then(function () {
+                                            alert("Hotline number copied: " + number);
+                                        }, function () {
+                                            alert("Hotline number copied: " + number);
+                                        });
+                                    } else {
+                                        var temp = document.createElement("input");
+                                        temp.value = number;
+                                        document.body.appendChild(temp);
+                                        temp.select();
+                                        try { document.execCommand("copy"); } catch (e) { }
+                                        document.body.removeChild(temp);
+                                        alert("Hotline number copied: " + number);
+                                    }
+                                    copyCount++;
+                                    showCopyCount();
+                                });
+                            }
+
+                            if (callBtn) {
+                                callBtn.addEventListener("click", function () {
+                                    var serviceName = nameEl.textContent.trim();
+                                    var serviceNumber = numberEl.textContent.trim();
+                                    var coins = parseInt(coinEl.textContent) || 0;
+                                    if (coins < 20) {
+                                        alert("Insufficient coins. You need at least 20 coins. Current: " + coins);
+                                        return;
+                                    }
+                                    coins = coins - 20;
+                                    coinEl.textContent = coins;
+                                    alert("Calling " + serviceName + " - " + serviceNumber);
+                                    addToHistory(serviceName, serviceNumber);
+                                });
+                            }
+                        });
+
+                        if (clearBtn) {
+                            clearBtn.addEventListener("click", function () {
+                                historyList.innerHTML = "";
                             });
                         }
                     });
                 </script>
+
 
 
 </body>
