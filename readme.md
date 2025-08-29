@@ -8,7 +8,7 @@
 
 ### Answers :
 
-1. In JavaScript, if you want to select just one element that has a unique identifier, you use a method that targets the id. Since an id is supposed to be unique, it will always give back only one element. If you want to select multiple elements that share the same class, there is another method that returns all elements with that class. There is also a more flexible method that lets you use any CSS-style selector, like a class, an id, or even combinations like a paragraph inside a division. This flexible method can either return just the first matching element or all matching elements as a list, depending on which version you use.
+1. In JavaScript, if we want to select just one element that has a unique identifier, you use a method that targets the id. Since an id is supposed to be unique, it will always give back only one element. If you want to select multiple elements that share the same class, there is another method that returns all elements with that class. There is also a more flexible method that lets you use any CSS-style selector, like a class, an id, or even combinations like a paragraph inside a division. This flexible method can either return just the first matching element or all matching elements as a list, depending on which version you use.
 
 2. To create a new element in JavaScript, we use the document.createElement() function. Once the element is created, we can set its content or attributes. To place it on the page, we insert it into an existing element using .appendChild() or .append(). For example, if we make a new div and set its text to “Hello!”, we can then attach it to the body of the page, and it will appear there.
 
