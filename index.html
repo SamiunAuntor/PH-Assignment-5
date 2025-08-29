@@ -312,6 +312,32 @@
                 </div>
 
 
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        var heartCount = document.querySelector(".heart-card h3");
+
+                        var heartButtons = document.querySelectorAll(
+                            ".bangladesh-railway-helpline button img, " +
+                            ".national-emergency-number-card button img, " +
+                            ".police-helpline-number-card button img, " +
+                            ".fire-service-number-card button img, " +
+                            ".ambulance-service-card button img, " +
+                            ".women-and-child-helpline-card button img, " +
+                            ".anti-corruption-helpline-card button img, " +
+                            ".electricity-helpline-card button img, " +
+                            ".brac-helpline-card button img"
+                        );
+
+                        for (var i = 0; i < heartButtons.length; i++) {
+                            heartButtons[i].addEventListener("click", function (event) {
+                                event.preventDefault();
+                                var count = parseInt(heartCount.textContent);
+                                heartCount.textContent = count + 1;
+                            });
+                        }
+                    });
+                </script>
+
 
 </body>
 
