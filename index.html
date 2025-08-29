@@ -354,15 +354,18 @@
 
                         function addToHistory(serviceName, serviceNumber) {
                             var now = new Date();
-                            var timeText = now.toLocaleTimeString(); // only time in HH:MM:SS AM/PM
+                            var timeText = now.toLocaleTimeString();
                             var item = document.createElement("div");
                             item.className = "bg-[#F7F7F7] p-3 rounded-md space-y-1";
                             item.innerHTML =
                                 '<div class="flex justify-between items-center">' +
+                                '<div>' +
                                 '<p class="font-medium">' + serviceName + '</p>' +
-                                '<p class="text-xs text-[#5C5C5C]">' + timeText + '</p>' +
+                                '<p class="text-sm text-[#5C5C5C]">' + serviceNumber + '</p>' +
                                 '</div>' +
-                                '<p class="text-sm text-[#111111]">' + serviceNumber + '</p>';
+                                '<p class="text-xs text-[#5C5C5C]">' + timeText + '</p>' +
+                                '</div>';
+
                             if (historyList.firstChild) {
                                 historyList.insertBefore(item, historyList.firstChild);
                             } else {
